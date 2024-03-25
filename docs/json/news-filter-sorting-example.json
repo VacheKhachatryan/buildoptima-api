@@ -1,0 +1,33 @@
+{
+  "skip": 0,
+  "take": 10,
+  "sort": [
+    {
+      "field": "title",
+      "order": "asc"
+    }
+  ],
+  "filter": {
+    "and": [
+      {
+        "operation": "like",
+        "name": "title",
+        "value": "Summer Sales"
+      },
+      {
+        "or": [
+          {
+            "operation": "eq",
+            "name": "category",
+            "value": "BREAKING_NEWS"
+          },
+          {
+            "operation": "gt",
+            "name": "createdAt",
+            "value": "2018-11-30T18:35:24.00Z"
+          }
+        ]
+      }
+    ]
+  }
+}

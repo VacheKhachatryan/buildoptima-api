@@ -1,0 +1,33 @@
+{
+  "skip": 0,
+  "take": 10,
+  "sort": [
+    {
+      "field": "name",
+      "order": "asc"
+    }
+  ],
+  "filter": {
+    "and": [
+      {
+        "operation": "eq",
+        "name": "name",
+        "value": "Royalties"
+      },
+      {
+        "or": [
+          {
+            "operation": "gt",
+            "name": "updatedAt",
+            "value": "2018-11-30T18:35:24.00Z"
+          },
+          {
+            "operation": "gt",
+            "name": "createdAt",
+            "value": "2018-11-30T18:35:24.00Z"
+          }
+        ]
+      }
+    ]
+  }
+}

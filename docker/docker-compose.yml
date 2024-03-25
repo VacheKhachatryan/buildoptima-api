@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgresql:
+    image: postgres:15beta3
+    container_name: PostgreSQL
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: root
+    volumes:
+      - /home/ubuntu/buildoptima/init.sql:/docker-entrypoint-initdb.d/create_schema.sql
+      - /home/ubuntu/buildoptima/data/:/var/lib/postgresql/data/
+
+  adminer:
+    image: adminer:4.8.1-standalone
+    restart: always
+    ports:
+      - "8080:8080"
+
+  buildoptima_app:
+    image: 687676024420.dkr.ecr.us-east-1.amazonaws.com/buildoptima
+    container_name: Buildoptima_API
+    ports:
+      - "80:80"
+    depends_on:
+      - postgresql
+      - adminer

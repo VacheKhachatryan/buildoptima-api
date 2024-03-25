@@ -1,0 +1,33 @@
+{
+  "skip": 0,
+  "take": 10,
+  "sort": [
+    {
+      "field": "updatedAt",
+      "order": "desc"
+    }
+  ],
+  "filter": {
+    "and": [
+      {
+        "operation": "eq",
+        "name": "firstName",
+        "value": "John"
+      },
+      {
+        "or": [
+          {
+            "operation": "like",
+            "name": "lastName",
+            "value": "ith"
+          },
+          {
+            "operation": "gt",
+            "name": "createdAt",
+            "value": "2018-11-30T18:35:24.00Z"
+          }
+        ]
+      }
+    ]
+  }
+}

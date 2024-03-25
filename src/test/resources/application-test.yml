@@ -1,0 +1,90 @@
+spring:
+  config:
+    import: aws-secretsmanager:buildoptima/test
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  datasource:
+    username: ${h2.username}
+    password:
+    url: jdbc:h2:mem:${h2.dbName};DB_CLOSE_DELAY=-1;INIT=create domain if not exists jsonb as json;MODE=PostgreSQL
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+config:
+  aws:
+    s3:
+      region: ${localstack.aws.region}
+      url: ${localstack.aws.s3.url}
+      imageBucketName: ${localstack.aws.s3.image-bucket.name}
+      dataBucketName: ${localstack.aws.s3.data-bucket.name}
+      webBucketName: ${localstack.aws.s3.web-bucket.name}
+      accessKey: ${localstack.aws.access-key}
+      secretKey: ${localstack.aws.secret-key}
+
+    sqs:
+      url: ${localstack.aws.sqs.url}
+      region: ${localstack.aws.region}
+      accessKey: ${localstack.aws.access-key}
+      secretKey: ${localstack.aws.secret-key}
+      propertyQueueName: ${localstack.aws.sqs.property.queue.name}
+
+  uris:
+    faq-category:
+      baseUri: /faq/categories
+      deleteByIdUri: /{id}
+      updateUri: /{id}
+      fetchUri: /fetch
+      retrieveByIdUri: /{id}
+      exportInCsvUri: /csv
+      metadataUri: /metadata
+    faq-question:
+      baseUri: /faq/questions
+      deleteByIdUri: /{id}
+      updateUri: /{id}
+      fetchUri: /fetch
+      retrieveByIdUri: /{id}
+      exportInCsvUri: /csv
+      metadataUri: /metadata
+      lookupUri: /lookup/{status}/{dictionary}
+    user:
+      baseUri: /user
+      fetchUri: /fetch
+      retrieveByIdUri: /{id}
+      deleteImageByIdUri: /{id}/image
+      downloadImageUri: /{id}/
+      editUserUri: /{id}
+      uploadImageUri: /{id}/image
+      restorePasswordUri: /auth/password/restore
+      verifyPasswordUri: /auth/verification
+      changePasswordUri: /password/change
+      refreshTokenUri: /auth/refreshment
+      loginUri: /auth
+      activationUri: /auth/activation
+      registrationUri: /auth/registration
+    news:
+      baseUri: /news
+      deleteUri: /{id}
+      updateUri: /{id}
+      getByIdUri: /{id}
+      getMetadataUri: /metadata
+      exportCsvUri: /csv
+      fetchUri: /fetch
+      archiveUri: /{id}/archive
+    property-migration:
+      baseUri: /properties
+      migrationUri: /migrate
+      reprocessUri: /re-process
+      trackProgressUri: /progress
+    property:
+      baseUri: /properties
+      findByAinUri: /{ain}
+      searchUri: /search
